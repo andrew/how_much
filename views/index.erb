@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <link rel="apple-touch-icon" href="/house.png"/>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.5.1/jquery.min.js"></script>
     <script>
         $(document).ready(function() {
@@ -30,11 +31,11 @@
 
         function handle_geolocation_query(position){
             $.getJSON('/value.json?lat='+position.coords.latitude+'&long='+position.coords.longitude, function(data, textStatus){
-               $('#average').text('£'+data)
+               $('#average').text(' £'+data)
             });
         }
-
     </script>
+    <meta name='viewport' content='width=device-width; initial-scale=1.0; maximum-scale=1.0;'>
   </head>
   <body>
     Average House Price around here:<span id="average"></span>

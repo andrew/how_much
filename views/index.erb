@@ -32,13 +32,38 @@
 
         function handle_geolocation_query(position){
             $.getJSON('/value.json?lat='+position.coords.latitude+'&long='+position.coords.longitude, function(data, textStatus){
-               $('#average').text(' £'+data)
+               $('#average').text('£'+data)
             });
         }
     </script>
+    <style type="text/css" media="screen">
+      body{
+        font-family: Helvetica, Arial, sans-serif;
+        font-size:40px;
+        font-weight:bold;
+      }
+      #average{
+        color:#FF8000;
+      }
+        footer{
+          margin-top:10px;
+          font-weight:normal;
+          color:#aaa;
+          font-size:14px;
+        }
+        footer a{
+          color:#aaa;
+        }
+      </style>
+    </style>
     <meta name='viewport' content='width=device-width; initial-scale=1.0; maximum-scale=1.0;'>
   </head>
   <body>
-    Average House Price around here:<span id="average"></span>
+    <p>Average House Price around here: <span id="average"><img src='/spinner.gif'></span></p>
+    <footer>
+      Copyright &copy;
+      <a href='http://teabass.com'>Andrew Nesbitt</a> |
+      <a href='/about'>About</a>
+    </footer>
   </body>
 </html>

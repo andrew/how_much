@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.5.1/jquery.min.js"></script>
+    <script>
+        $(document).ready(function() {
+          initiate_geolocation()
+        });
+        function initiate_geolocation() {
+            navigator.geolocation.getCurrentPosition(handle_geolocation_query,handle_errors);
+        }
+
+        function handle_errors(error)
+        {
+            switch(error.code)
+            {
+                case error.PERMISSION_DENIED: alert("You must share your data for this to work!");
+                break;
+
+                case error.POSITION_UNAVAILABLE: alert("Could not detect current position");
+                break;
+
+                case error.TIMEOUT: alert("Retrieving position timed out");
+                break;
+
+                default: alert("unknown error");
+                break;
+            }
+        }
+
+        function handle_geolocation_query(position){
+            $.getJSON('/value.json?lat='+position.coords.latitude+'&long='+position.coords.longitude, function(data, textStatus){
+               $('#average').text('£'+data)
+            });
+        }
+
+    </script>
+  </head>
+  <body>
+    Average House Price around here:<span id="average"></span>
+  </body>
+</html>

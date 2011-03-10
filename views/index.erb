@@ -4,12 +4,16 @@
     <title>How much?!</title>
     <link rel="apple-touch-icon" href="/house.png"/>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.5.1/jquery.min.js"></script>
+    <script src="http://code.google.com/apis/gears/gears_init.js" type="text/javascript" charset="utf-8"></script>
+  	<script src="/geo.js" type="text/javascript" charset="utf-8"></script>
     <script>
         $(document).ready(function() {
           initiate_geolocation()
         });
         function initiate_geolocation() {
-            navigator.geolocation.getCurrentPosition(handle_geolocation_query,handle_errors);
+          if (geo_position_js.init()) {
+            geo_position_js.getCurrentPosition(handle_geolocation_query,handle_errors,{maximumAge: 75000});
+          }
         }
 
         function handle_errors(error)
@@ -55,7 +59,6 @@
           color:#aaa;
         }
       </style>
-    </style>
     <meta name='viewport' content='width=device-width; initial-scale=1.0; maximum-scale=1.0;'>
   </head>
   <body>
